@@ -10,5 +10,5 @@ Este proyecto contiene una página web responsive desarrollada con HTML, CSS, Ja
 
 ## Contenido del proyecto
 - Página principal responsive
-- Diseño adaptable a computadora, tablet y celular
+- Diseño adaptable 
 - Archivos organizados para revisión académica
