@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkServicesStatus();
 });
 
-// ===== NAVEGACIÓN =====
+
 function showSection(name) {
     ['inicio', 'estudiantes', 'cursos'].forEach(s => {
         document.getElementById('section' + capitalize(s)).classList.add('d-none');
@@ -39,7 +39,7 @@ function showAlert(message, type = 'success') {
     setTimeout(() => { const el = document.getElementById(id); if (el) el.remove(); }, 4000);
 }
 
-// ===== STATUS SERVICIOS =====
+
 async function checkServicesStatus() {
     const checks = [
         { url: `${API_BASE}/api/estudiantes`, id: 'statusEstudiantes', label: 'Servicio activo' },
@@ -60,7 +60,7 @@ async function checkServicesStatus() {
     }
 }
 
-// ===== ESTUDIANTES =====
+
 async function loadEstudiantes() {
     const tbody = document.getElementById('tablaEstudiantes');
     tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4"><div class="spinner-border uc-spinner"></div></td></tr>';
@@ -174,7 +174,7 @@ async function deleteEstudiante(id) {
     }
 }
 
-// ===== CURSOS =====
+
 async function loadCursos() {
     const tbody = document.getElementById('tablaCursos');
     tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4"><div class="spinner-border uc-spinner"></div></td></tr>';
