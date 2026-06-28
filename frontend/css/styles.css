@@ -1,4 +1,4 @@
-/* Universidad Continental PA03 - Paleta Morada */
+
 
 :root {
     --uc-primary:    #5B21B6;
@@ -14,7 +14,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ===== NAVBAR ===== */
+
 .uc-navbar {
     background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%);
     border-bottom: 2px solid #A78BFA;
@@ -25,7 +25,7 @@ body {
     color: #1e0042 !important;
 }
 
-/* ===== COLORES PRINCIPALES ===== */
+
 .uc-text-primary   { color: #5B21B6 !important; }
 .uc-text-secondary { color: #7C3AED !important; }
 
@@ -38,7 +38,7 @@ body {
     color: #fff !important;
 }
 
-/* ===== CARD HEADERS ===== */
+
 .uc-card-header-primary {
     background: linear-gradient(135deg, #5B21B6, #7C3AED);
 }
@@ -46,7 +46,7 @@ body {
     background: linear-gradient(135deg, #7C3AED, #6D28D9);
 }
 
-/* ===== BOTONES ===== */
+
 .uc-btn-primary {
     background-color: #5B21B6;
     border-color: #5B21B6;
@@ -81,7 +81,7 @@ body {
     color: #fff;
 }
 
-/* ===== INPUT GROUP ADDON ===== */
+
 .uc-input-addon {
     background-color: var(--uc-light);
     color: var(--uc-primary);
@@ -91,7 +91,7 @@ body {
     white-space: nowrap;
 }
 
-/* ===== ICON CIRCLES ===== */
+
 .icon-circle {
     width: 80px;
     height: 80px;
@@ -103,10 +103,10 @@ body {
 .uc-icon-circle-primary  { background-color: #EDE9FE; }
 .uc-icon-circle-secondary { background-color: #F3E8FF; }
 
-/* ===== SPINNER ===== */
+
 .uc-spinner { color: #7C3AED !important; }
 
-/* ===== CARDS HOVER ===== */
+
 .card-hover {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -115,18 +115,18 @@ body {
     box-shadow: 0 0.75rem 1.5rem rgba(91, 33, 182, 0.18) !important;
 }
 
-/* ===== FOOTER ===== */
+
 .uc-footer {
     background: linear-gradient(135deg, #3B0764, #5B21B6);
 }
 
-/* ===== TABLE ACTION BUTTONS ===== */
+
 .btn-action {
     padding: 0.2rem 0.45rem;
     font-size: 0.8rem;
 }
 
-/* ===== ALERT ANIMATION ===== */
+
 #alertContainer .alert {
     animation: slideIn 0.3s ease;
 }
@@ -135,7 +135,7 @@ body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== RESPONSIVE ===== */
+
 @media (max-width: 576px) {
     .table thead th, .table tbody td {
         font-size: 0.82rem;
