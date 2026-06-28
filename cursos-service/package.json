@@ -1,0 +1,26 @@
+{
+  "name": "cursos-service",
+  "version": "1.0.0",
+  "description": "Microservicio de cursos - Universidad Continental PA03",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest --testTimeout=10000 --forceExit"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mssql": "^10.0.1",
+    "msnodesqlv8": "^4.3.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"]
+  }
+}

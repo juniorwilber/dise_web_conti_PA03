@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidad Continental - PA03</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark uc-navbar shadow-sm sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+            <i class="bi bi-mortarboard-fill fs-4"></i>
+            <span>Universidad Continental <span class="badge uc-badge-accent ms-1">PA03</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showSection('inicio')"><i class="bi bi-house-fill me-1"></i>Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showSection('estudiantes')"><i class="bi bi-people-fill me-1"></i>Estudiantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showSection('cursos')"><i class="bi bi-book-fill me-1"></i>Cursos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Alert container -->
+<div id="alertContainer" class="container-fluid px-3 pt-2" style="position:sticky;top:56px;z-index:1020;"></div>
+
+<!-- ===== SECCIÓN INICIO ===== -->
+<section id="sectionInicio" class="container-fluid py-5">
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-md-8 text-center">
+            <h1 class="display-5 fw-bold uc-text-primary">Sistema de Gestión Académica</h1>
+            <p class="lead text-muted">Plataforma basada en microservicios para la gestión de estudiantes y cursos</p>
+        </div>
+    </div>
+    <div class="row justify-content-center g-4">
+        <div class="col-12 col-sm-6 col-lg-5">
+            <div class="card h-100 shadow border-0 card-hover" onclick="showSection('estudiantes')" style="cursor:pointer">
+                <div class="card-body text-center p-4">
+                    <div class="icon-circle uc-icon-circle-primary mb-3 mx-auto">
+                        <i class="bi bi-people-fill uc-text-primary fs-1"></i>
+                    </div>
+                    <h4 class="card-title fw-bold">Estudiantes</h4>
+                    <p class="card-text text-muted">Gestiona el registro de estudiantes: crear, consultar, actualizar y eliminar.</p>
+                    <span class="badge uc-badge-primary">Puerto 4001</span>
+                    <div class="mt-3">
+                        <span class="badge bg-success" id="statusEstudiantes">Verificando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-5">
+            <div class="card h-100 shadow border-0 card-hover" onclick="showSection('cursos')" style="cursor:pointer">
+                <div class="card-body text-center p-4">
+                    <div class="icon-circle uc-icon-circle-secondary mb-3 mx-auto">
+                        <i class="bi bi-book-fill uc-text-secondary fs-1"></i>
+                    </div>
+                    <h4 class="card-title fw-bold">Cursos</h4>
+                    <p class="card-text text-muted">Gestiona los cursos académicos: crear, consultar, actualizar y eliminar.</p>
+                    <span class="badge uc-badge-secondary">Puerto 4002</span>
+                    <div class="mt-3">
+                        <span class="badge bg-success" id="statusCursos">Verificando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECCIÓN ESTUDIANTES ===== -->
+<section id="sectionEstudiantes" class="container-fluid py-4 d-none">
+    <div class="d-flex align-items-center mb-4 gap-2">
+        <i class="bi bi-people-fill uc-text-primary fs-3"></i>
+        <h2 class="mb-0 fw-bold">Gestión de Estudiantes</h2>
+    </div>
+
+    <!-- Formulario -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header uc-card-header-primary text-white">
+            <i class="bi bi-person-plus-fill me-2"></i><span id="formEstTitle">Registrar Estudiante</span>
+        </div>
+        <div class="card-body">
+            <form id="formEstudiante" class="row g-3">
+                <input type="hidden" id="estId">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <label class="form-label fw-semibold">Código <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="estCodigo" placeholder="UC2021001" required>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <label class="form-label fw-semibold">Nombres <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="estNombres" placeholder="Carlos Alberto" required>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <label class="form-label fw-semibold">Apellidos <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="estApellidos" placeholder="Ramirez Torres" required>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <label class="form-label fw-semibold">Correo institucional <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="estCorreoUser" placeholder="c.quispe" required>
+                        <span class="input-group-text uc-input-addon">@continental.edu.pe</span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label class="form-label fw-semibold">Carrera <span class="text-danger">*</span></label>
+                    <select class="form-select" id="estCarrera" required>
+                        <option value="">-- Selecciona una carrera --</option>
+                        <option>Ingeniería de Sistemas e Informática</option>
+                        <option>Ingeniería Industrial</option>
+                        <option>Ingeniería Civil</option>
+                        <option>Ingeniería Mecánica</option>
+                        <option>Administración de Empresas</option>
+                        <option>Contabilidad y Finanzas</option>
+                        <option>Derecho</option>
+                        <option>Psicología</option>
+                        <option>Medicina Humana</option>
+                        <option>Enfermería</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 d-flex align-items-end gap-2">
+                    <button type="submit" class="btn uc-btn-primary" id="btnEstSubmit">
+                        <i class="bi bi-save me-1"></i>Guardar
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="cancelEditEstudiante()">
+                        <i class="bi bi-x-circle me-1"></i>Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-table me-2"></i>Lista de Estudiantes</span>
+            <button class="btn btn-sm btn-outline-light" onclick="loadEstudiantes()">
+                <i class="bi bi-arrow-clockwise me-1"></i>Actualizar
+            </button>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped mb-0 align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Código</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th class="d-none d-md-table-cell">Correo</th>
+                            <th class="d-none d-lg-table-cell">Carrera</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaEstudiantes">
+                        <tr><td colspan="7" class="text-center py-4"><div class="spinner-border uc-spinner"></div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECCIÓN CURSOS ===== -->
+<section id="sectionCursos" class="container-fluid py-4 d-none">
+    <div class="d-flex align-items-center mb-4 gap-2">
+        <i class="bi bi-book-fill uc-text-secondary fs-3"></i>
+        <h2 class="mb-0 fw-bold">Gestión de Cursos</h2>
+    </div>
+
+    <!-- Formulario -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header uc-card-header-secondary text-white">
+            <i class="bi bi-journal-plus me-2"></i><span id="formCurTitle">Registrar Curso</span>
+        </div>
+        <div class="card-body">
+            <form id="formCurso" class="row g-3">
+                <input type="hidden" id="curId">
+                <div class="col-12 col-md-6 col-lg-2">
+                    <label class="form-label fw-semibold">Código <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="curCodigo" placeholder="IS101" required>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label class="form-label fw-semibold">Nombre del Curso <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="curNombre" placeholder="Programacion Orientada a Objetos" required>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label class="form-label fw-semibold">Carrera a la que pertenece <span class="text-danger">*</span></label>
+                    <select class="form-select" id="curCarrera" required>
+                        <option value="">-- Selecciona una carrera --</option>
+                        <option>Ingeniería de Sistemas e Informática</option>
+                        <option>Ingeniería Industrial</option>
+                        <option>Ingeniería Civil</option>
+                        <option>Ingeniería Mecánica</option>
+                        <option>Administración de Empresas</option>
+                        <option>Contabilidad y Finanzas</option>
+                        <option>Derecho</option>
+                        <option>Psicología</option>
+                        <option>Medicina Humana</option>
+                        <option>Enfermería</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 col-lg-1">
+                    <label class="form-label fw-semibold">Créditos <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="curCreditos" placeholder="4" min="1" max="10" required>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label class="form-label fw-semibold">Docente <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="curDocente" placeholder="Dr. Roberto Figueroa" required>
+                </div>
+                <div class="col-12 col-md-6 d-flex align-items-end gap-2">
+                    <button type="submit" class="btn uc-btn-secondary" id="btnCurSubmit">
+                        <i class="bi bi-save me-1"></i>Guardar
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="cancelEditCurso()">
+                        <i class="bi bi-x-circle me-1"></i>Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-table me-2"></i>Lista de Cursos</span>
+            <button class="btn btn-sm btn-outline-light" onclick="loadCursos()">
+                <i class="bi bi-arrow-clockwise me-1"></i>Actualizar
+            </button>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped mb-0 align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Créditos</th>
+                            <th class="d-none d-md-table-cell">Docente</th>
+                            <th class="d-none d-lg-table-cell">Carrera</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaCursos">
+                        <tr><td colspan="7" class="text-center py-4"><div class="spinner-border uc-spinner"></div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal confirmación eliminar -->
+<div class="modal fade" id="modalEliminar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title"><i class="bi bi-exclamation-triangle-fill me-2"></i>Confirmar Eliminación</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="modalEliminarMsg">¿Estás seguro de eliminar este registro?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">
+                    <i class="bi bi-trash me-1"></i>Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="uc-footer text-white text-center py-3 mt-4">
+    <small>Universidad Continental &copy; 2026 &mdash; Proyecto PA03</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

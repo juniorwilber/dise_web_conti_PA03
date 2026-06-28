@@ -1,0 +1,23 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno (contienen datos sensibles)
+.env
+.env.local
+.env.production
+
+# Carpetas de herramientas de desarrollo
+.vscode/
+.idea/
+.claude/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Cobertura de tests
+coverage/
